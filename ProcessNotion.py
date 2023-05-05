@@ -67,11 +67,12 @@ class NotionDatabaseDW:
         logging.info("DataFrame preprocessed.")
         return df
 
-    def filter_df(self, df):
+    def filter_df(self, df, inc = False):
         logging.info("Filtering DataFrame...")
         df_false = df[df['Lesson'] == False]
-        filtered_df = df_false[(df_false['Date'] > df[df['Lesson']].iloc[-1]
-                                ['Date']) & (df_false['Date'] <= pd.to_datetime('today'))]
+        filtered_df = df_false[df_false['Date'] <= pd.to_datetime('today')]
+        if not inc:
+            filtered_df = filtered_df[df_false['Date'] > df[df['Lesson']].iloc[-1]['Date']]
         logging.info("DataFrame filtered.")
         return filtered_df
     
