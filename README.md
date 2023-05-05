@@ -25,7 +25,7 @@ You will also need API keys for Telegram and Notion.
 1. Clone the repository:
 
 ```
-git clone https://github.com/<username>/Telegram-Images-Downloader-and-Notion-Database-Updater.git
+git clone https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater.git
 ```
 
 2. Set up environment variables for the API keys:
