@@ -1,6 +1,8 @@
 from ProcessNotion import *
 from LoadImagesTelegram import *
 
+inc = False 
+webmark = False
 
 if __name__ == "__main__":
     notion_token = os.environ['NOTION_TOKEN']
@@ -10,7 +12,7 @@ if __name__ == "__main__":
     results = DW.query_database()
     df = DW.extract_data_and_export_to_csv(results)
     df = DW.preprocess_df(df)
-    filtered_df = DW.filter_df(df)
+    filtered_df = DW.filter_df(df, inc)
     logging.info("Filtered DataFrame:")
     print(list(filtered_df['Date']))
 
@@ -31,7 +33,7 @@ if __name__ == "__main__":
     for i in filtered_df.iterrows():
         print(i[1].keys())
         for url in i[1]['img_urls']:
-            DW.add_image_to_page(page_id=i[1]['id'], image_url=url)
+            DW.add_image_to_page(page_id=i[1]['id'], image_url=url, webmark=webmark)
         if len(i[1]['img_urls']):
             DW.tick_lesson_checkbox(page_id=i[1]['id'])
         print(f'Submitted {i[1]["id"]}')

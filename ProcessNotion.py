@@ -12,7 +12,7 @@ class NotionDatabaseDW:
         self.notion = Client(auth=notion_token)
         self.database_id = database_id
 
-    def add_image_to_page(self, page_id, image_url):
+    def load_image_to_page(self, page_id, image_url):
         logging.info("Adding image to Notion page...")
         block_properties = {
             "object": "block",
@@ -29,6 +29,45 @@ class NotionDatabaseDW:
             logging.info(f"Image {image_url} added to the page successfully!")
         else:
             logging.info(f"Failed to add image {image_url} to the page.")
+
+    def add_webmark_to_page(page_id, url, title=None, description=None):
+        logging.info("Adding web bookmark to Notion page...")
+        
+        # Create a new block for the web bookmark
+        block_properties = {
+            "object": "block",
+            "type": "bookmark",
+            "bookmark": {
+                "url": url
+            }
+        }
+        
+        # Add optional properties to the block
+        if title:
+            block_properties["bookmark"]["title"] = title
+        if description:
+            block_properties["bookmark"]["description"] = description
+        
+        # Append the new block to the Notion page
+        response = notion.pages.retrieve(page_id=page_id)
+        block_id = response.get("parent").get("id")
+        response = notion.blocks.children.append(
+            block_id=block_id,
+            children=[block_properties],
+        )
+        
+        # Log success or failure message
+        if response:
+            logging.info(f"Web bookmark {url} added to the page successfully!")
+        else:
+            logging.info(f"Failed to add web bookmark {url} to the page.")
+
+
+    def add_image_to_page(self, page_id, image_url, webmark=False):
+        if webmark:
+            self.add_webmark_to_page(page_id, image_url)
+        else:
+            self.load_image_to_page(page_id, image_url)
 
     def query_database(self):
         logging.info("Querying Notion database...")
