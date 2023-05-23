@@ -30,42 +30,40 @@ class NotionDatabaseDW:
         else:
             logging.info(f"Failed to add image {image_url} to the page.")
 
-    def add_webmark_to_page(page_id, url, title=None, description=None):
-        logging.info("Adding web bookmark to Notion page...")
+    def add_embed_to_page(self, page_id, source, width=None, height=None):
+        logging.info("Adding embed block to Notion page...")
         
-        # Create a new block for the web bookmark
+        # Create a new block for the embedded content
         block_properties = {
             "object": "block",
-            "type": "bookmark",
-            "bookmark": {
-                "url": url
+            "type": "embed",
+            "embed": {
+                "url": source
             }
         }
         
         # Add optional properties to the block
-        if title:
-            block_properties["bookmark"]["title"] = title
-        if description:
-            block_properties["bookmark"]["description"] = description
+        # if width:
+        #     block_properties["embed"]["width"] = width
+        # if height:
+        #     block_properties["embed"]["height"] = height
         
         # Append the new block to the Notion page
-        response = notion.pages.retrieve(page_id=page_id)
-        block_id = response.get("parent").get("id")
-        response = notion.blocks.children.append(
-            block_id=block_id,
-            children=[block_properties],
-        )
-        
-        # Log success or failure message
-        if response:
-            logging.info(f"Web bookmark {url} added to the page successfully!")
-        else:
-            logging.info(f"Failed to add web bookmark {url} to the page.")
+        try:
+            response = self.notion.blocks.children.append(
+                block_id=page_id,
+                children=[block_properties],
+            )
+            logging.info(f"Embed block {source} added to the page successfully!")
+        except APIResponseError as e:
+            logging.info(f"Failed to add embed block {source} to the page. Error: {e}")
 
 
-    def add_image_to_page(self, page_id, image_url, webmark=False):
-        if webmark:
-            self.add_webmark_to_page(page_id, image_url)
+
+
+    def add_image_to_page(self, page_id, image_url, embed=False):
+        if embed:
+            self.add_embed_to_page(page_id, image_url)
         else:
             self.load_image_to_page(page_id, image_url)
 
@@ -108,7 +106,7 @@ class NotionDatabaseDW:
 
     def filter_df(self, df, inc = False):
         logging.info("Filtering DataFrame...")
-        df_false = df[df['Lesson'] == False]
+        df_false = df[(df['Date'].dt.date == pd.to_datetime('today').date()) | (df['Lesson'] == False)]
         filtered_df = df_false[df_false['Date'] <= pd.to_datetime('today')]
         if not inc:
             filtered_df = filtered_df[df_false['Date'] > df[df['Lesson']].iloc[-1]['Date']]
