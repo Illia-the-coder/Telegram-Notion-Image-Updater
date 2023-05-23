@@ -1,7 +1,7 @@
 import os
 import csv
 import pandas as pd
-from notion_client import Client
+from notion_client import *
 import logging
 import asyncio
 from telethon import TelegramClient
@@ -55,7 +55,7 @@ class NotionDatabaseDW:
                 children=[block_properties],
             )
             logging.info(f"Embed block {source} added to the page successfully!")
-        except APIResponseError as e:
+        except Exception as e:
             logging.info(f"Failed to add embed block {source} to the page. Error: {e}")
 
 
