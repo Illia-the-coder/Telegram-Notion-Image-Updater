@@ -2,7 +2,7 @@
 ![image](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/assets/101904816/6d08bf33-e642-4654-9bbc-2d5fdd454a3c)
 
 This repository contains a Python script that downloads images from a Telegram group and updates a Notion database with the images.
-#Scheme of scenario of code
+# Scheme of scenario of code
 ![telegram-cloud-photo-size-2-5377771677544466740-y](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/assets/101904816/f264c30e-9e0b-4bc8-a0a7-26c49a162c86)
 ## Requirements
 
