@@ -46,6 +46,7 @@ python main.py
 ```
 
 The script will download the images from the Telegram group and add them to the relevant pages in the Notion database. The script will also log information about the status of each step of the process.
+![telegram-cloud-photo-size-2-5377771677544466740-y](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/assets/101904816/f264c30e-9e0b-4bc8-a0a7-26c49a162c86)
 
 ## Customization
 
