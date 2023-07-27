@@ -1,6 +1,6 @@
 # Telegram Images Downloader and Notion Database Updater
 
-![Telegram Notion Image Updater](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/blob/main/assets/101904816/6d08bf33-e642-4654-9bbc-2d5fdd454a3c.png)
+![Telegram Notion Image Updater](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater)
 
 This repository contains a Python script that downloads images from a Telegram group and updates a Notion database with the images. It also includes functionality to generate PDFs from the downloaded images.
 
