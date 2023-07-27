@@ -92,7 +92,7 @@ class NotionDatabaseDW:
 
         # save results
         df = pd.DataFrame(results)
-        df.to_json("notion_database.json", orient="records")
+        df.to_json("resources/notion_database.json", orient="records")
         logging.info("Database query successful.")
 
         return results
@@ -114,7 +114,7 @@ class NotionDatabaseDW:
             data.append(row)
 
         df = pd.DataFrame(data)
-        df.to_csv("notion_database.csv", index=False,
+        df.to_csv("resources/notion_database.csv", index=False,
                   quoting=csv.QUOTE_NONNUMERIC)
         logging.info("Data extracted and exported to CSV.")
         return df
