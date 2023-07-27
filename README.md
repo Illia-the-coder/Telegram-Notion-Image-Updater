@@ -4,9 +4,6 @@
 
 This repository contains a Python script that downloads images from a Telegram group and updates a Notion database with the images. It also includes functionality to generate PDFs from the downloaded images.
 
-## Scheme of Scenario of Code
-
-![Scenario of Code](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/blob/main/assets/101904816/f264c30e-9e0b-4bc8-a0a7-26c49a162c86.png)
 
 ## Requirements
 
@@ -71,4 +68,4 @@ This script provides a simple solution for downloading images from a Telegram gr
 
 ## Acknowledgements
 
-This project was inspired by [this article ↗](https://towardsdatascience.com/how-to-scrape-a-telegram-group-and-store-messages-to-a-database-3290f25d8d64) by David Mezzetti. Special thanks to [notion-sdk-py ↗](https://github.com/ramnes/notion-sdk-py) for the Notion integration, [telethon ↗](https://github.com/LonamiWebs/Telethon) for the Telegram integration, and [img2pdf ↗](https://github.com/josch/img2pdf) for the PDF generation.
+ Special thanks to [notion-sdk-py ↗](https://github.com/ramnes/notion-sdk-py) for the Notion integration, [telethon ↗](https://github.com/LonamiWebs/Telethon) for the Telegram integration, and [img2pdf ↗](https://github.com/josch/img2pdf) for the PDF generation.
