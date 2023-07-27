@@ -69,16 +69,40 @@ class NotionDatabaseDW:
 
     def query_database(self):
         logging.info("Querying Notion database...")
-        results = self.notion.databases.query(database_id=self.database_id)
+        results = []
+        next_cursor = None
+
+        while True:
+            # Query the database with the current cursor
+            response = self.notion.databases.query(
+                database_id=self.database_id,
+                start_cursor=next_cursor,
+                page_size=1000
+            )
+
+            # Append the results to the list
+            results.extend(response.get("results"))
+
+            # Check if there are more pages to retrieve
+            if not response.get("has_more"):
+                break
+
+            # Get the next cursor for the next page
+            next_cursor = response.get("next_cursor")
+
+        # save results
+        df = pd.DataFrame(results)
+        df.to_json("notion_database.json", orient="records")
         logging.info("Database query successful.")
+
         return results
 
     def extract_data_and_export_to_csv(self, results):
         logging.info("Extracting data from query results...")
         data = []
-        columns = results["results"][0]["properties"].keys()
+        columns = results[0]["properties"].keys()
 
-        for page in results["results"]:
+        for page in results:
             row = {}
             row['id'] = page["id"]
             for column in columns:
@@ -99,9 +123,10 @@ class NotionDatabaseDW:
         logging.info("Preprocessing DataFrame...")
         df['Date'] = df['Date'].apply(lambda x: x['start'])
         df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')
-        df = df[['Date', 'id', 'Lesson']]
+        df = df[['Date', 'id', 'Lesson','Grade']]
         df = df.sort_values(by=['Date'])
         logging.info("DataFrame preprocessed.")
+        print(df.head())
         return df
 
     def filter_df(self, df, inc = False):
