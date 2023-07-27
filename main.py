@@ -41,7 +41,7 @@ class TelegramNotionIntegration:
         results = DW.query_database()
         df = DW.extract_data_and_export_to_csv(results)
         df = DW.preprocess_df(df)
-        df.to_csv('local_database.csv', index=False)
+        df.to_csv('resources/local_database.csv', index=False)
 
     async def main(self, AccessAllDates=True, embed=False):
         logging.info("Running main function...")
@@ -73,7 +73,7 @@ class TelegramNotionIntegration:
     def start(self):
         logging.info("Starting application...")
         loop = asyncio.get_event_loop()
-        if not os.path.exists('local_database.csv'):
+        if not os.path.exists('resources/local_database.csv'):
             loop.run_until_complete(self.download_database(self.notion_token, self.database_id))
 
         self.client.start()
