@@ -1,14 +1,12 @@
-# English
-
 # Telegram Images Downloader and Notion Database Updater
 
-https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/assets/101904816/6d08bf33-e642-4654-9bbc-2d5fdd454a3c
+![Telegram Notion Image Updater](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/blob/main/assets/101904816/6d08bf33-e642-4654-9bbc-2d5fdd454a3c.png)
 
-This repository contains a Python script that downloads images from a Telegram group and updates a Notion database with the images.
+This repository contains a Python script that downloads images from a Telegram group and updates a Notion database with the images. It also includes functionality to generate PDFs from the downloaded images.
 
-# Scheme of scenario of code
+## Scheme of Scenario of Code
 
-https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/assets/101904816/f264c30e-9e0b-4bc8-a0a7-26c49a162c86
+![Scenario of Code](https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/blob/main/assets/101904816/f264c30e-9e0b-4bc8-a0a7-26c49a162c86.png)
 
 ## Requirements
 
@@ -19,121 +17,58 @@ The following packages are required to run the script:
 - pandas
 - tqdm
 - cloudinary
+- img2pdf
 
 You can install these packages using pip:
 
 ```
-pip install telethon notion-client pandas tqdm cloudinary
-
+pip install telethon notion-client pandas tqdm cloudinary img2pdf
 ```
 
 You will also need API keys for Telegram and Notion.
 
-## How to use
+## How to Use
 
 1. Clone the repository:
 
 ```
-git clone <https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater.git>
-
+git clone https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater.git
 ```
 
-1. Set up environment variables for the API keys:
+2. Set up environment variables for the API keys:
 
 ```
 export API_ID=<Telegram API ID>
 export API_HASH=<Telegram API HASH>
 export NOTION_TOKEN=<Notion API Key>
-export DatabaseID=<Notion Database ID>
+export DATABASE_ID=<Notion Database ID>
 export GROUP_USERNAME=<Telegram Group username>
-
 ```
 
-1. Run the script:
+3. Run the script:
 
 ```
 python main.py
-
 ```
 
 The script will download the images from the Telegram group and add them to the relevant pages in the Notion database. The script will also log information about the status of each step of the process.
 
+4. To generate PDFs from the downloaded images, run the following command:
+
+```
+python generate_pdfs.py
+```
+
+This will create a PDF file for each page in the Notion database that contains images. The PDFs will be saved in the `pdfs` directory.
+
 ## Customization
 
-You can customize the script to fit your specific needs. For example, you can modify the filtering criteria for the Notion database, or change the directory to save the images.
+You can customize the script to fit your specific needs. For example, you can modify the filtering criteria for the Notion database, change the directory to save the images, or modify the settings for generating the PDFs.
 
 ## Conclusion
 
-This script provides a simple solution for downloading images from a Telegram group and updating a Notion database with the images. By using this script, you can automate the process of updating your Notion database with the images from a Telegram group.
+This script provides a simple solution for downloading images from a Telegram group and updating a Notion database with the images. By using this script, you can automate the process of updating your Notion database with the images from a Telegram group, and also generate PDFs from the downloaded images for easy sharing and storage. 
 
-# Українською
+## Acknowledgements
 
-# Завантажувач зображень Telegram і оновлювач бази даних Notion
-
-https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/assets/101904816/6d08bf33-e642-4654-9bbc-2d5fdd454a3c
-
-Цей репозиторій містить скрипт Python, який завантажує зображення з групи Telegram та оновлює базу даних Notion з зображеннями.
-
-# Схема сценарію коду
-
-https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater/assets/101904816/f264c30e-9e0b-4bc8-a0a7-26c49a162c86
-
-## Вимоги
-
-Для запуску скрипту необхідні наступні пакети:
-
-- telethon
-- notion-client
-- pandas
-- tqdm
-- cloudinary
-
-Ви можете встановити ці пакети за допомогою pip:
-
-```
-pip install telethon notion-client pandas tqdm cloudinary
-
-```
-
-Вам також знадобляться ключі API для Telegram та Notion.
-
-## Як користуватися
-
-1. Клонуйте репозиторій:
-
-```
-git clone <https://github.com/Illia-the-coder/Telegram-Notion-Image-Updater.git>
-
-```
-
-1. Налаштуйте змінні середовища для ключів API:
-
-```
-export API_ID=<Telegram API ID>
-export API_HASH=<Telegram API HASH>
-export NOTION_TOKEN=<Notion API Key>
-export DatabaseID=<Notion Database ID>
-export GROUP_USERNAME=<Telegram Group username>
-
-```
-
-1. Запустіть скрипт:
-
-```
-python main.py
-
-```
-
-Скрипт завантажує зображення з групи Telegram та додає їх на відповідні сторінки бази даних Notion. Скрипт також реєструє інформацію про стан кожного кроку процесу.
-
-## Налаштування
-
-Ви можете налаштувати скрипт під свої потреби. Наприклад, ви можете змінити критерії фільтрації для бази даних Notion або змінити директорію для збереження зображень.
-
-## Висновок
-
-Цей скрипт забезпечує просте рішення для завантаження зображень з групи Telegram та оновлення бази даних Notion з зображеннями. Використовуючи цей скрипт, ви можете автоматизувати процес оновлення вашої бази даних Notion з зображеннями з групи Telegram.
-
-# Завантажувач зображень Telegram та оновлювач бази даних Notion
-
-У цьому репозиторії міститься скрипт на мові Python, що завантажує зображення з групи Telegram та оновлю
+This project was inspired by [this article ↗](https://towardsdatascience.com/how-to-scrape-a-telegram-group-and-store-messages-to-a-database-3290f25d8d64) by David Mezzetti. Special thanks to [notion-sdk-py ↗](https://github.com/ramnes/notion-sdk-py) for the Notion integration, [telethon ↗](https://github.com/LonamiWebs/Telethon) for the Telegram integration, and [img2pdf ↗](https://github.com/josch/img2pdf) for the PDF generation.
