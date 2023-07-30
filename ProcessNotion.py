@@ -123,7 +123,8 @@ class NotionDatabaseDW:
         logging.info("Preprocessing DataFrame...")
         df['Date'] = df['Date'].apply(lambda x: x['start'])
         df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')
-        df = df[['Date', 'id', 'Lesson','Grade']]
+        df['Тема'] = df['Тема'].apply(lambda x: x[0]['name'])
+        df = df[['Date', 'id', 'Lesson','Grade','Тема']]
         df = df.sort_values(by=['Date'])
         logging.info("DataFrame preprocessed.")
         print(df.head())

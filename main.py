@@ -73,13 +73,13 @@ class TelegramNotionIntegration:
     def start(self):
         logging.info("Starting application...")
         loop = asyncio.get_event_loop()
-        if not os.path.exists('resources/local_database.csv'):
-            loop.run_until_complete(self.download_database(self.notion_token, self.database_id))
+        # if not os.path.exists('resources/local_database.csv'):
+        loop.run_until_complete(self.download_database(self.notion_token, self.database_id))
 
-        self.client.start()
-        self.client.add_event_handler(self.process_new_photos, events.NewMessage(chats=self.group_username))
-        logging.info("Telegram client started, waiting for new messages...")
-        self.client.run_until_disconnected()
+        # self.client.start()
+        # self.client.add_event_handler(self.process_new_photos, events.NewMessage(chats=self.group_username))
+        # logging.info("Telegram client started, waiting for new messages...")
+        # self.client.run_until_disconnected()
 
 if __name__ == "__main__":
     load_dotenv()
